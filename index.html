@@ -258,7 +258,21 @@
             font-style: italic;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding-top: 15px;
+            margin-bottom: 15px;
         }
+
+        /* Yeni Ziyaretçi Sayacı Tasarımı */
+        .visitor-counter {
+            display: flex;
+            justify-content: center;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .visitor-counter:hover {
+            opacity: 1;
+        }
+        
     </style>
 </head>
 <body>
@@ -290,7 +304,7 @@
             Hello, I am <strong>Ates</strong>. Maybe y'all know me as Atesvr. I am a content creator, but honestly, I don't actually want to make content anymore. I just wanna have fun. Yet, I can't even be truly happy in VR lately. I'm just tired...
         </div>
 
-        <!-- YENİ Biyografi Metni (Altına eklendi) -->
+        <!-- YENİ Biyografi Metni -->
         <div class="sub-bio">
             I'm <strong>14</strong>, based in <strong>Turkey</strong>, and I have an absolute obsession with the cosmos. I fucking love astronomy—honestly, if the universe were a girl, I'd marry her in a heartbeat.
         </div>
@@ -306,6 +320,12 @@
             "Life is beautiful and unique until it teaches you a few things."
         </div>
         
+        <!-- YENİ EKLENEN Ziyaretçi Sayacı -->
+        <div class="visitor-counter">
+            <!-- Sayacı özel url'ye ve mor (#8a2be2) renge göre ayarladık -->
+            <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fatesvrfr.github.io%2FAboutAtes%2F&label=VISITORS&labelColor=%23000000&countColor=%238a2be2" alt="Visitor Count">
+        </div>
+
     </div>
 
 </body>
