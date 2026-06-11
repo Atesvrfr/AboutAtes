@@ -127,7 +127,7 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(138, 43, 226, 0.15);
-            padding: 50px 45px;
+            padding: 40px 45px;
             border-radius: 24px;
             width: 440px;
             text-align: center;
@@ -146,7 +146,7 @@
             display: flex;
             justify-content: center;
             gap: 6px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .zero-gravity-name span {
@@ -168,7 +168,6 @@
             color: transparent;
             filter: drop-shadow(0 0 15px rgba(138, 43, 226, 0.4));
             
-            /* Zero Gravity ve İç Yıldız Kayma Animasyonu Aynı Anda */
             animation: 
                 floatLetter 4s ease-in-out infinite alternate,
                 innerStarsMove 15s linear infinite;
@@ -180,7 +179,6 @@
             100% { background-position: 200px 200px, 300px 300px, 0% 50%; }
         }
 
-        /* Bağımsız Zero Gravity Gecikmeleri */
         .zero-gravity-name span:nth-child(1) { animation-delay: 0.0s, 0s; }
         .zero-gravity-name span:nth-child(2) { animation-delay: 0.8s, 0s; }
         .zero-gravity-name span:nth-child(3) { animation-delay: 1.5s, 0s; }
@@ -192,17 +190,32 @@
             100% { transform: translateY(5px) rotate(5deg); }
         }
 
-        /* Ana Biyografi Metni */
+        /* Ana Biyografi Metni (Eski Yazı) */
         .main-bio {
             font-size: 0.95rem;
             line-height: 1.7;
             color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             padding: 0 10px;
             font-weight: 300;
         }
 
         .main-bio strong {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        /* Alt Biyografi Metni (Yeni İstediğin Astronomi Yazısı) */
+        .sub-bio {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.65);
+            margin-bottom: 25px;
+            padding: 0 10px;
+            font-weight: 300;
+        }
+
+        .sub-bio strong {
             color: #fff;
             font-weight: 500;
         }
@@ -215,14 +228,14 @@
             gap: 12px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 14px;
+            padding: 12px;
             border-radius: 14px;
             color: white;
             text-decoration: none;
             font-size: 1.1rem;
             font-weight: 500;
             transition: all 0.3s ease;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .social-link:hover {
@@ -244,7 +257,7 @@
             color: rgba(255, 255, 255, 0.5);
             font-style: italic;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding-top: 20px;
+            padding-top: 15px;
         }
     </style>
 </head>
@@ -272,9 +285,14 @@
             <span>s</span>
         </div>
 
-        <!-- Biyografi Metni -->
+        <!-- ESKİ Biyografi Metni (Aynen duruyor) -->
         <div class="main-bio">
-            I'm <strong>14</strong>, based in <strong>Turkey</strong>, and I have an absolute obsession with the cosmos. I fucking love astronomy—honestly, if the universe were a girl, I'd marry her in a heartbeat. The stars are my only real escape...
+            Hello, I am <strong>Ates</strong>. Maybe y'all know me as Atesvr. I am a content creator, but honestly, I don't actually want to make content anymore. I just wanna have fun. Yet, I can't even be truly happy in VR lately. I'm just tired...
+        </div>
+
+        <!-- YENİ Biyografi Metni (Altına eklendi) -->
+        <div class="sub-bio">
+            I'm <strong>14</strong>, based in <strong>Turkey</strong>, and I have an absolute obsession with the cosmos. I fucking love astronomy—honestly, if the universe were a girl, I'd marry her in a heartbeat.
         </div>
 
         <!-- TikTok Butonu -->
