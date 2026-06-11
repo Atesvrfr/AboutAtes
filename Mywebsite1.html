@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ates | Bio</title>
+    <!-- FontAwesome (TikTok Logosu için) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* Satürn İmleci Geri Döndü */
+            cursor: url('https://fonts.gstatic.com/s/e/notoemoji/latest/1fa90/512.webp') 24 24, auto;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #030008;
+            color: white;
+        }
+
+        /* Yüksek Kaliteli Derin Uzay Arka Planı */
+        .deep-space-bg {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            background: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=2500&q=100') center/cover no-repeat;
+            z-index: -4;
+            animation: slowPan 50s linear infinite alternate;
+            filter: brightness(0.6) contrast(1.3);
+        }
+
+        @keyframes slowPan {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.05) translate(-30px, -20px); }
+        }
+
+        /* Uzaktaki Yalnız Kara Delik */
+        .black-hole-container {
+            position: absolute;
+            top: 15%;
+            right: 15%;
+            width: 100px;
+            height: 100px;
+            z-index: -3;
+            transform: scale(0.6); /* Uzakta görünmesi için küçültüldü */
+        }
+
+        .black-hole {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: #000;
+            border-radius: 50%;
+            box-shadow: 0 0 20px 2px rgba(138, 43, 226, 0.8),
+                        0 0 40px 15px rgba(255, 100, 50, 0.4);
+            z-index: 2;
+        }
+
+        /* Kara Delik Çevresindeki Işık Halkası (Accretion Disk) */
+        .accretion-disk {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 10px solid rgba(255, 150, 50, 0.6);
+            transform: translate(-50%, -50%) rotateX(75deg);
+            box-shadow: 0 0 20px 5px rgba(255, 100, 50, 0.8), 
+                        inset 0 0 15px 5px rgba(255, 100, 50, 0.8);
+            filter: blur(2px);
+            animation: spinDisk 8s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes spinDisk {
+            0% { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(0deg); }
+            100% { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg); }
+        }
+
+        /* CSS Hareketli Yıldız Katmanları */
+        .stars-layer-1, .stars-layer-2 {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100%; height: 100%;
+            z-index: -2;
+            background-image: 
+                radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 130px 80px, #ffffff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: starDrift 60s linear infinite;
+            opacity: 0.5;
+        }
+
+        .stars-layer-2 {
+            background-size: 350px 350px;
+            animation: starDrift 100s linear infinite reverse;
+            opacity: 0.3;
+        }
+
+        @keyframes starDrift {
+            from { background-position: 0 0; }
+            to { background-position: 1000px 500px; }
+        }
+
+        /* Cam Efektli (Glassmorphism) Profil Kartı */
+        .profile-card {
+            background: rgba(8, 10, 20, 0.55);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(138, 43, 226, 0.15);
+            padding: 50px 45px;
+            border-radius: 24px;
+            width: 440px;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(138, 43, 226, 0.05);
+            animation: cardEnter 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        @keyframes cardEnter {
+            from { opacity: 0; transform: scale(0.8) translateY(50px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* İsim: İçinde Yıldızların Aktığı Mor Galaksi Efekti */
+        .zero-gravity-name {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .zero-gravity-name span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            display: inline-block;
+            
+            /* Mor Galaksi Zemin ve İçinde Kayan Yıldızlar */
+            background-color: #4a00e0;
+            background-image: 
+                radial-gradient(1.5px 1.5px at 15px 15px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 35px, #ffffff, rgba(0,0,0,0)),
+                linear-gradient(135deg, #2b0854, #8e2de2, #4a00e0);
+            background-size: 80px 80px, 120px 120px, 200% 200%;
+            
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            filter: drop-shadow(0 0 15px rgba(138, 43, 226, 0.4));
+            
+            /* Zero Gravity ve İç Yıldız Kayma Animasyonu Aynı Anda */
+            animation: 
+                floatLetter 4s ease-in-out infinite alternate,
+                innerStarsMove 15s linear infinite;
+        }
+
+        @keyframes innerStarsMove {
+            0% { background-position: 0 0, 0 0, 0% 50%; }
+            50% { background-position: 100px 100px, 150px 150px, 100% 50%; }
+            100% { background-position: 200px 200px, 300px 300px, 0% 50%; }
+        }
+
+        /* Bağımsız Zero Gravity Gecikmeleri */
+        .zero-gravity-name span:nth-child(1) { animation-delay: 0.0s, 0s; }
+        .zero-gravity-name span:nth-child(2) { animation-delay: 0.8s, 0s; }
+        .zero-gravity-name span:nth-child(3) { animation-delay: 1.5s, 0s; }
+        .zero-gravity-name span:nth-child(4) { animation-delay: 2.2s, 0s; }
+
+        @keyframes floatLetter {
+            0% { transform: translateY(0px) rotate(-5deg); }
+            50% { transform: translateY(-10px) rotate(0deg); }
+            100% { transform: translateY(5px) rotate(5deg); }
+        }
+
+        /* Ana Biyografi Metni */
+        .main-bio {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 30px;
+            padding: 0 10px;
+            font-weight: 300;
+        }
+
+        .main-bio strong {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        /* TikTok Butonu */
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 14px;
+            border-radius: 14px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .social-link:hover {
+            background: rgba(138, 43, 226, 0.1);
+            border-color: #8a2be2;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .social-link i {
+            font-size: 1.5rem;
+            text-shadow: 1.5px 1.5px 0px rgba(255, 0, 80, 0.7), -1.5px -1.5px 0px rgba(0, 242, 254, 0.7);
+        }
+
+        /* Alt Kısım - Özel Söz */
+        .quote-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Uzaktaki Kara Delik -->
+    <div class="black-hole-container">
+        <div class="accretion-disk"></div>
+        <div class="black-hole"></div>
+    </div>
+
+    <!-- Arka Plan Katmanları -->
+    <div class="deep-space-bg"></div>
+    <div class="stars-layer-1"></div>
+    <div class="stars-layer-2"></div>
+
+    <!-- Profil Kartı -->
+    <div class="profile-card">
+        
+        <!-- Zero Gravity & İçinde Yıldızlar Kayan İsim -->
+        <div class="zero-gravity-name">
+            <span>A</span>
+            <span>t</span>
+            <span>e</span>
+            <span>s</span>
+        </div>
+
+        <!-- Biyografi Metni (İngilizcesi hafifçe daha duygusal ve akıcı hale getirildi) -->
+        <div class="main-bio">
+            Hello, I am <strong>Ates</strong>. Maybe y'all know me as Atesvr. I am a content creator, but honestly, I don't actually want to make content anymore. I just wanna have fun. Yet, I can't even be truly happy in VR lately. I'm just tired...
+        </div>
+
+        <!-- TikTok Butonu -->
+        <a href="https://www.tiktok.com/@atesvrfr" target="_blank" class="social-link">
+            <i class="fab fa-tiktok"></i>
+            <span>TikTok</span>
+        </a>
+
+        <!-- Anlamlı Söz -->
+        <div class="quote-text">
+            "Life is beautiful and unique until it teaches you a few things."
+        </div>
+        
+    </div>
+
+</body>
+</html>
