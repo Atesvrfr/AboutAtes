@@ -322,37 +322,30 @@
         
 
     </div>
-<div id="welcome-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; font-family: 'Poppins', sans-serif;">
-    <h2 style="margin-bottom: 20px;">Would you like to play the music?</h2>
-    <button id="start-btn" style="padding: 15px 40px; font-size: 1.2rem; cursor: pointer; background: #8a2be2; border: none; color: white; border-radius: 50px; transition: 0.3s;">Yes, play music</button>
+<div id="music-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#fff; font-family:sans-serif;">
+    <h2 style="margin-bottom:20px;">Listen to the Atmosphere?</h2>
+    <button id="play-music-btn" style="padding:15px 30px; cursor:pointer; background:#8a2be2; border:none; color:white; border-radius:30px; font-weight:bold;">PLAY MUSIC</button>
 </div>
 
-<div id="yt-player" style="display:none;"></div>
+<div id="player" style="display:none;"></div>
 
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
-    let player;
+    var player;
     function onYouTubeIframeAPIReady() {
-        player = new YT.Player('yt-player', {
+        player = new YT.Player('player', {
             videoId: 'kahaQNzT-ec',
-            events: { 'onReady': () => { console.log("Ready"); } }
+            events: {
+                'onReady': function() {
+                    document.getElementById('play-music-btn').addEventListener('click', function() {
+                        player.playVideo();
+                        player.setVolume(50);
+                        document.getElementById('music-overlay').style.display = 'none';
+                    });
+                }
+            }
         });
     }
-
-    document.getElementById('start-btn').addEventListener('click', () => {
-        player.playVideo();
-        player.setVolume(50);
-        document.getElementById('welcome-overlay').style.display = 'none';
-    });
-
-    // 3 saniye kuralı: Eğer 3 saniye içinde basmazsa ekran kapansın istedin
-    setTimeout(() => {
-        const overlay = document.getElementById('welcome-overlay');
-        if (overlay.style.display !== 'none') {
-            overlay.style.opacity = '0';
-            setTimeout(() => { overlay.style.display = 'none'; }, 500);
-        }
-    }, 3000);
 </script>
     
 </body>
