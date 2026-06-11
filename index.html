@@ -322,8 +322,51 @@
         
 
     </div>
-<!-- Müzik Bloğu (Daha agresif autoplay) -->
-    <iframe src="https://www.youtube.com/embed/kahaQNzT-ec?autoplay=1&mute=0&loop=1&playlist=kahaQNzT-ec" width="0" height="0" allow="autoplay"></iframe>
+<!-- Müzik Kontrol Paneli -->
+<div id="music-player" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(8, 10, 20, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(138, 43, 226, 0.3); padding: 10px 20px; border-radius: 50px; display: flex; align-items: center; gap: 15px; z-index: 1000; transition: all 0.3s ease;">
+    <button id="play-btn" style="background: none; border: none; color: #fff; cursor: pointer; font-size: 1.2rem;"><i class="fas fa-play"></i></button>
+    <div id="progress-container" style="width: 100px; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px;">
+        <div id="progress-bar" style="width: 0%; height: 100%; background: #8a2be2; border-radius: 2px;"></div>
+    </div>
+    <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5" style="width: 60px; accent-color: #8a2be2;">
+</div>
+
+<!-- Gizli YouTube -->
+<div id="yt-player" style="display:none;"></div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+    let player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('yt-player', {
+            height: '0', width: '0',
+            videoId: 'kahaQNzT-ec',
+            events: { 'onReady': onPlayerReady }
+        });
+    }
+    function onPlayerReady(event) {
+        window.addEventListener('mousemove', function startMusic() {
+            player.playVideo();
+            player.setVolume(50);
+            document.getElementById('play-btn').innerHTML = '<i class="fas fa-pause"></i>';
+            window.removeEventListener('mousemove', startMusic);
+        }, {once: true});
+    }
+
+    document.getElementById('play-btn').addEventListener('click', () => {
+        if (player.getPlayerState() === 1) { player.pauseVideo(); document.getElementById('play-btn').innerHTML = '<i class="fas fa-play"></i>'; }
+        else { player.playVideo(); document.getElementById('play-btn').innerHTML = '<i class="fas fa-pause"></i>'; }
+    });
+
+    document.getElementById('volume-slider').addEventListener('input', (e) => { player.setVolume(e.target.value * 100); });
+    
+    setInterval(() => {
+        if (player && player.getDuration) {
+            let progress = (player.getCurrentTime() / player.getDuration()) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+        }
+    }, 500);
+</script>
     
 </body>
 </html>
