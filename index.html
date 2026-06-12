@@ -188,7 +188,7 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
-        /* Profil Resmi Kuralları + Rastgele Foto Animasyonu için Ayarlar */
+        /* Profil Resmi Kuralları */
         .profile-avatar {
             width: 85px;
             height: 85px;
@@ -197,7 +197,6 @@
             border: 2px solid rgba(138, 43, 226, 0.4);
             margin: 0 auto 15px auto;
             display: block;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         /* İsim Efekti */
@@ -401,7 +400,7 @@
             <span id="time-display">--:--:--</span>
         </div>
         
-        <!-- Ana Profil Resmi (İlk başta açılacak varsayılan resim) -->
+        <!-- Ana Profil Resmi -->
         <img src="image_93dc62.jpg" id="main-avatar" alt="Logo" class="profile-avatar">
         
         <!-- İsim -->
@@ -420,12 +419,6 @@
         <div class="sub-bio">
             I'm <strong>14</strong>, based in <strong>Turkey</strong>, and I have an absolute obsession with the cosmos. I fucking love astronomy—honestly, if the universe were a girl, I'd marry her in a heartbeat.
         </div>
-
-        <!-- RANDOM PHOTO BUTONU (GÜNCELLENEN .jpeg SİSTEMİ) -->
-        <button id="random-photo-btn" class="social-link" style="width: 100%; cursor: pointer; font-family: 'Poppins', sans-serif; background: rgba(0, 242, 254, 0.08); border-color: rgba(0, 242, 254, 0.3);">
-            <i class="fas fa-images" style="text-shadow: none; font-size: 1.2rem; color: #00f2fe;"></i>
-            <span>Random Photo of Me</span>
-        </button>
 
         <!-- MORE INFO BUTONU -->
         <button id="toggle-info-btn" class="social-link" style="width: 100%; cursor: pointer; font-family: 'Poppins', sans-serif; background: rgba(138, 43, 226, 0.08); border-color: rgba(138, 43, 226, 0.3);">
@@ -536,26 +529,6 @@
                     document.getElementById('typewriter-2').classList.remove('type-cursor');
                 }, 400); 
             }
-        });
-
-        // --- GÜNCELLENEN KISIM: .jpeg LİSTESİ ---
-        const photoArray = ['f1.jpeg', 'f2.jpeg', 'f3.jpeg', 'f4.jpeg', 'f5.jpeg', 'f6.jpeg', 'f7.jpeg', 'f8.jpeg', 'f9.jpeg', 'f10.jpeg'];
-        
-        document.getElementById('random-photo-btn').addEventListener('click', function() {
-            const avatar = document.getElementById('main-avatar');
-            
-            // Küçülme ve Kaybolma Animasyonu
-            avatar.style.opacity = '0';
-            avatar.style.transform = 'scale(0.7) rotate(-15deg)';
-            
-            // Fotoğraf Değişimi ve Geri Gelme Animasyonu
-            setTimeout(() => {
-                const randomIndex = Math.floor(Math.random() * photoArray.length);
-                avatar.src = photoArray[randomIndex];
-                
-                avatar.style.opacity = '1';
-                avatar.style.transform = 'scale(1) rotate(0deg)';
-            }, 400);
         });
 
         // --- Müzik Sistemi ---
