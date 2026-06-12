@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ates | Bio</title>
+    <!-- FontAwesome (TikTok Logosu için) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
@@ -208,7 +210,7 @@
             100% { transform: translateY(5px) rotate(5deg); }
         }
 
-        /* Ana Biyografi Metni (Eski Yazı) */
+        /* Ana Biyografi Metni */
         .main-bio {
             font-size: 0.95rem;
             line-height: 1.7;
@@ -223,7 +225,7 @@
             font-weight: 500;
         }
 
-        /* Alt Biyografi Metni (Yeni İstediğin Astronomi Yazısı) */
+        /* Alt Biyografi Metni */
         .sub-bio {
             font-size: 0.85rem;
             line-height: 1.6;
@@ -253,7 +255,7 @@
             font-size: 1.1rem;
             font-weight: 500;
             transition: all 0.3s ease;
-            margin-bottom: 15px; /* Alt alta düzgün durmaları için 15px yapıldı */
+            margin-bottom: 15px;
         }
 
         .social-link:hover {
@@ -296,19 +298,24 @@
 </head>
 <body>
 
+    <!-- Uzaktaki Kara Delik -->
     <div class="black-hole-container">
         <div class="accretion-disk"></div>
         <div class="black-hole"></div>
     </div>
 
+    <!-- Arka Plan Katmanları -->
     <div class="deep-space-bg"></div>
     <div class="stars-layer-1"></div>
     <div class="stars-layer-2"></div>
 
+    <!-- Profil Kartı -->
     <div class="profile-card">
         
+        <!-- İstediğin Profil Logosu -->
         <img src="image_93dc62.jpg" alt="Logo" class="profile-avatar">
         
+        <!-- Zero Gravity & İçinde Yıldızlar Kayan İsim -->
         <div class="zero-gravity-name">
             <span>A</span>
             <span>t</span>
@@ -316,39 +323,65 @@
             <span>s</span>
         </div>
 
+        <!-- Gizli Hava Durumu ve Saniyeli Zaman Göstergesi -->
         <div class="stealth-widget">
             <span id="temp-display">--°C</span> | <span id="time-display">--:--:--</span>
         </div>
 
+        <!-- ESKİ Biyografi Metni -->
         <div class="main-bio">
             Hello, I am <strong>Ates</strong>. Maybe y'all know me as Atesvr. I am a content creator, but honestly, I don't actually want to make content anymore. I just wanna have fun. Yet, I can't even be truly happy in VR lately. I'm just tired...
         </div>
 
+        <!-- YENİ Biyografi Metni -->
         <div class="sub-bio">
             I'm <strong>14</strong>, based in <strong>Turkey</strong>, and I have an absolute obsession with the cosmos. I fucking love astronomy—honestly, if the universe were a girl, I'd marry her in a heartbeat.
         </div>
 
+        <!-- YENİ: MORE INFO BUTONU -->
+        <button id="toggle-info-btn" class="social-link" style="width: 100%; cursor: pointer; font-family: 'Poppins', sans-serif; background: rgba(138, 43, 226, 0.08); border-color: rgba(138, 43, 226, 0.3);">
+            <i class="fas fa-chevron-down" id="toggle-info-icon" style="text-shadow: none; font-size: 1.2rem;"></i>
+            <span>More Info & Career</span>
+        </button>
+
+        <!-- YENİ: MORE INFO GİZLİ İÇERİK (Tıklanınca Açılır) -->
+        <div id="hidden-info-content" style="display: none; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 15px; border-radius: 15px; text-align: left; margin-bottom: 25px; box-shadow: inset 0 0 10px rgba(138, 43, 226, 0.05); font-size: 0.85rem; line-height: 1.6; color: rgba(255, 255, 255, 0.7); font-weight: 300;">
+            <div style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                <strong style="color: #8a2be2; font-size: 0.95rem;">More Info:</strong><br>
+                I am also a Gorilla Tag Horror (GTH) content creator. I was highly dedicated to it, earning 3 Finger Painter badges across different games. Over time, I've built a solid reputation and became a trusted figure across many communities and servers.
+            </div>
+            <div>
+                <strong style="color: #8a2be2; font-size: 0.95rem;">My Career:</strong><br>
+                Back in mid-April, I reached my absolute peak in Gorilla Tag, hitting Branch Top 1. During my prime, I was practically untaggable. I truly miss those peak days...
+            </div>
+        </div>
+
+        <!-- TikTok Butonu -->
         <a href="https://www.tiktok.com/@atesvrfr" target="_blank" class="social-link">
             <i class="fab fa-tiktok"></i>
             <span>TikTok</span>
         </a>
 
+        <!-- Steam Butonu -->
         <a href="https://steamcommunity.com/profiles/76561199128426003/" target="_blank" class="social-link">
             <i class="fab fa-steam"></i>
             <span>Steam</span>
         </a>
 
+        <!-- YouTube Butonu -->
         <a href="https://www.youtube.com/@atesvr/shorts" target="_blank" class="social-link">
             <i class="fab fa-youtube"></i>
             <span>YouTube</span>
         </a>
 
+        <!-- Anlamlı Söz -->
         <div class="quote-text">
             "Life is beautiful and unique until it teaches you a few things."
         </div>
         
     </div>
 
+    <!-- Müzik Sistemi Giriş Ekranı -->
     <div id="music-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(3, 0, 8, 0.98); z-index:9999; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#fff; font-family:sans-serif;">
         <h2 style="margin-bottom:20px; font-weight:300; letter-spacing:2px;">Listen to the Atmosphere?</h2>
         <button id="play-music-btn" style="padding:15px 30px; cursor:pointer; background:#8a2be2; border:none; color:white; border-radius:30px; font-weight:bold; transition: 0.3s; box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);">PLAY MUSIC</button>
@@ -358,6 +391,22 @@
 
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
+        // --- 0. Açılır Kapanır More Info Butonu Mantığı ---
+        document.getElementById('toggle-info-btn').addEventListener('click', function() {
+            var content = document.getElementById('hidden-info-content');
+            var icon = document.getElementById('toggle-info-icon');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                content.style.display = 'none';
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            }
+        });
+
         // --- 1. Gelişmiş Mobil & PC Uyumlu Müzik Sistemi ---
         var player;
         function onYouTubeIframeAPIReady() {
