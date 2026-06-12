@@ -294,6 +294,47 @@
             opacity: 1;
         }
         
+        /* ----------------------------------------------------
+           YENİ EKLENEN: AÇILIR KUTU VE DAKTİLO EFEKTİ CSS'İ
+           (Eski tasarımını zerre bozmayacak şekilde entegre edildi)
+        ----------------------------------------------------- */
+        #hidden-info-content {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.03);
+            border: 0px solid rgba(255, 255, 255, 0.08);
+            padding: 0 15px;
+            border-radius: 15px;
+            text-align: left;
+            margin-bottom: 0;
+            box-shadow: inset 0 0 10px rgba(138, 43, 226, 0.05);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            transition: all 0.4s ease-in-out; /* Kutunun yumuşak açılması */
+        }
+
+        #hidden-info-content.open {
+            max-height: 500px;
+            opacity: 1;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-width: 1px;
+        }
+
+        /* Daktilo yanıp sönen imleç efekti */
+        .type-cursor::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+            color: #8a2be2;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -344,15 +385,15 @@
             <span>More Info & Career</span>
         </button>
 
-        <!-- YENİ: MORE INFO GİZLİ İÇERİK (Tıklanınca Açılır) -->
-        <div id="hidden-info-content" style="display: none; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 15px; border-radius: 15px; text-align: left; margin-bottom: 25px; box-shadow: inset 0 0 10px rgba(138, 43, 226, 0.05); font-size: 0.85rem; line-height: 1.6; color: rgba(255, 255, 255, 0.7); font-weight: 300;">
+        <!-- YENİ: MORE INFO GİZLİ İÇERİK (Animasyonlu ve Daktilo Efektli) -->
+        <div id="hidden-info-content">
             <div style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
                 <strong style="color: #8a2be2; font-size: 0.95rem;">More Info:</strong><br>
-                I am also a Gorilla Tag Horror (GTH) content creator. I was highly dedicated to it, earning 3 Finger Painter badges across different games. Over time, I've built a solid reputation and became a trusted figure across many communities and servers.
+                <span id="typewriter-1"></span>
             </div>
             <div>
                 <strong style="color: #8a2be2; font-size: 0.95rem;">My Career:</strong><br>
-                Back in mid-April, I reached my absolute peak in Gorilla Tag, hitting Branch Top 1. During my prime, I was practically untaggable. I truly miss those peak days...
+                <span id="typewriter-2"></span>
             </div>
         </div>
 
@@ -391,19 +432,68 @@
 
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // --- 0. Açılır Kapanır More Info Butonu Mantığı ---
+        // --- 0. Açılır Kutu ve Hızlı Daktilo Efekti ---
+        const text1 = "I am also a Gorilla Tag Horror (GTH) content creator. I was highly dedicated to it, earning 3 Finger Painter badges across different games. Over time, I've built a solid reputation and became a trusted figure across many communities and servers.";
+        const text2 = "Back in mid-April, I reached my absolute peak in Gorilla Tag, hitting Branch Top 1. During my prime, I was practically untaggable. I truly miss those peak days...";
+
+        let typeTimeouts = [];
+
+        function typeWriterEffect(elementId, text, speed, callback) {
+            let i = 0;
+            let el = document.getElementById(elementId);
+            el.innerHTML = '';
+            el.classList.add('type-cursor'); // İmleci ekle
+            
+            function type() {
+                if (i < text.length) {
+                    el.innerHTML += text.charAt(i);
+                    i++;
+                    let timeoutId = setTimeout(type, speed);
+                    typeTimeouts.push(timeoutId);
+                } else {
+                    el.classList.remove('type-cursor'); // Yazma bitince imleci kaldır
+                    if(callback) callback();
+                }
+            }
+            type();
+        }
+
         document.getElementById('toggle-info-btn').addEventListener('click', function() {
             var content = document.getElementById('hidden-info-content');
             var icon = document.getElementById('toggle-info-icon');
             
-            if (content.style.display === 'none') {
-                content.style.display = 'block';
+            if (!content.classList.contains('open')) {
+                // Kutuyu aç
+                content.classList.add('open');
                 icon.classList.remove('fa-chevron-down');
                 icon.classList.add('fa-chevron-up');
+                
+                // Önceki yazıları temizle
+                document.getElementById('typewriter-1').innerHTML = '';
+                document.getElementById('typewriter-2').innerHTML = '';
+                
+                // Kutunun açılmasını biraz bekle (300ms) sonra daktiloyu süper hızlı (12ms) başlat
+                setTimeout(() => {
+                    typeWriterEffect('typewriter-1', text1, 12, () => {
+                        typeWriterEffect('typewriter-2', text2, 12);
+                    });
+                }, 300);
+                
             } else {
-                content.style.display = 'none';
+                // Kutuyu kapat
+                content.classList.remove('open');
                 icon.classList.remove('fa-chevron-up');
                 icon.classList.add('fa-chevron-down');
+                
+                // Kapanırken daktiloyu durdur ve yazıları sil
+                typeTimeouts.forEach(clearTimeout);
+                typeTimeouts = [];
+                setTimeout(() => {
+                    document.getElementById('typewriter-1').innerHTML = '';
+                    document.getElementById('typewriter-1').classList.remove('type-cursor');
+                    document.getElementById('typewriter-2').innerHTML = '';
+                    document.getElementById('typewriter-2').classList.remove('type-cursor');
+                }, 400); // Kapanma animasyonu bitince sil
             }
         });
 
