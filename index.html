@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ates | Bio</title>
-    <!-- FontAwesome (TikTok Logosu için) -->
+    <!-- FontAwesome (İkonlar için) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -141,7 +141,54 @@
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* Yeni Eklenen Profil Resmi Kuralları */
+        /* Sağ ve Sol Birleşik Kanatlar (Widgetlar) */
+        .widget-wing {
+            position: absolute;
+            top: 70px;
+            width: 85px;
+            background: rgba(8, 10, 20, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            padding: 12px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            z-index: -1;
+            transition: all 0.3s ease;
+        }
+        
+        .widget-left {
+            left: -80px;
+            border-radius: 20px 0 0 20px;
+            border-right: none;
+            padding-right: 15px;
+        }
+        
+        .widget-right {
+            right: -80px;
+            border-radius: 0 20px 20px 0;
+            border-left: none;
+            padding-left: 15px;
+        }
+
+        .widget-wing i {
+            font-size: 1.6rem;
+            color: #8a2be2;
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+        }
+
+        .widget-wing span {
+            font-size: 0.9rem;
+            font-family: monospace;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Profil Resmi Kuralları + Rastgele Foto Animasyonu için Ayarlar */
         .profile-avatar {
             width: 85px;
             height: 85px;
@@ -150,18 +197,10 @@
             border: 2px solid rgba(138, 43, 226, 0.4);
             margin: 0 auto 15px auto;
             display: block;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Gizli Hava Durumu ve Saniyeli Saat Kuralları */
-        .stealth-widget {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.4);
-            margin-bottom: 15px;
-            font-family: monospace;
-            letter-spacing: 1px;
-        }
-
-        /* İsim: İçinde Yıldızların Aktığı Mor Galaksi Efekti */
+        /* İsim Efekti */
         .zero-gravity-name {
             display: flex;
             justify-content: center;
@@ -175,7 +214,6 @@
             font-weight: 900;
             display: inline-block;
             
-            /* Mor Galaksi Zemin ve İçinde Kayan Yıldızlar */
             background-color: #4a00e0;
             background-image: 
                 radial-gradient(1.5px 1.5px at 15px 15px, #ffffff, rgba(0,0,0,0)),
@@ -240,7 +278,7 @@
             font-weight: 500;
         }
 
-        /* Butonların Ortak Stili ve Animasyonları */
+        /* Butonlar */
         .social-link {
             display: flex;
             align-items: center;
@@ -270,7 +308,7 @@
             text-shadow: 1.5px 1.5px 0px rgba(255, 0, 80, 0.7), -1.5px -1.5px 0px rgba(0, 242, 254, 0.7);
         }
 
-        /* Alt Kısım - Özel Söz */
+        /* Alt Kısım - Söz */
         .quote-text {
             font-size: 0.9rem;
             line-height: 1.6;
@@ -281,20 +319,8 @@
             margin-top: 10px;
             margin-bottom: 15px;
         }
-
-        /* Yeni Ziyaretçi Sayacı Tasarımı */
-        .visitor-counter {
-            display: flex;
-            justify-content: center;
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
-        }
-
-        .visitor-counter:hover {
-            opacity: 1;
-        }
         
-        /* AÇILIR KUTU VE DAKTİLO EFEKTİ CSS'İ */
+        /* Açılır Kutu */
         #hidden-info-content {
             max-height: 0;
             opacity: 0;
@@ -321,7 +347,6 @@
             border-width: 1px;
         }
 
-        /* Daktilo yanıp sönen imleç efekti */
         .type-cursor::after {
             content: '|';
             animation: blink 0.7s infinite;
@@ -331,6 +356,20 @@
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
+        }
+
+        @media (max-width: 650px) {
+            .widget-wing {
+                position: static;
+                width: auto;
+                flex-direction: row;
+                justify-content: center;
+                border-radius: 15px !important;
+                border: 1px solid rgba(138, 43, 226, 0.2) !important;
+                margin: 5px;
+                padding: 10px 15px;
+                z-index: 1;
+            }
         }
     </style>
 </head>
@@ -350,10 +389,22 @@
     <!-- Profil Kartı -->
     <div class="profile-card">
         
-        <!-- İstediğin Profil Logosu -->
-        <img src="image_93dc62.jpg" alt="Logo" class="profile-avatar">
+        <!-- Sol Kanat: Hava Durumu Widget'ı -->
+        <div class="widget-wing widget-left">
+            <i class="fas fa-cloud-sun"></i>
+            <span id="temp-display">--°C</span>
+        </div>
+
+        <!-- Sağ Kanat: Saat Widget'ı -->
+        <div class="widget-wing widget-right">
+            <i class="fas fa-clock"></i>
+            <span id="time-display">--:--:--</span>
+        </div>
         
-        <!-- Zero Gravity & İçinde Yıldızlar Kayan İsim -->
+        <!-- Ana Profil Resmi (İlk başta açılacak varsayılan resim) -->
+        <img src="image_93dc62.jpg" id="main-avatar" alt="Logo" class="profile-avatar">
+        
+        <!-- İsim -->
         <div class="zero-gravity-name">
             <span>A</span>
             <span>t</span>
@@ -361,20 +412,20 @@
             <span>s</span>
         </div>
 
-        <!-- Gizli Hava Durumu ve Saniyeli Zaman Göstergesi -->
-        <div class="stealth-widget">
-            My local weather: <span id="temp-display">--°C</span> | My local time: <span id="time-display">--:--:--</span>
-        </div>
-
-        <!-- ESKİ Biyografi Metni -->
+        <!-- Biyografi Metinleri -->
         <div class="main-bio">
             Hello, I am <strong>Ates</strong>. Maybe y'all know me as Atesvr. I am a content creator, but honestly, I don't actually want to make content anymore. I just wanna have fun. Yet, I can't even be truly happy in VR lately. I'm just tired...
         </div>
 
-        <!-- YENİ Biyografi Metni -->
         <div class="sub-bio">
             I'm <strong>14</strong>, based in <strong>Turkey</strong>, and I have an absolute obsession with the cosmos. I fucking love astronomy—honestly, if the universe were a girl, I'd marry her in a heartbeat.
         </div>
+
+        <!-- RANDOM PHOTO BUTONU (GÜNCELLENEN .jpeg SİSTEMİ) -->
+        <button id="random-photo-btn" class="social-link" style="width: 100%; cursor: pointer; font-family: 'Poppins', sans-serif; background: rgba(0, 242, 254, 0.08); border-color: rgba(0, 242, 254, 0.3);">
+            <i class="fas fa-images" style="text-shadow: none; font-size: 1.2rem; color: #00f2fe;"></i>
+            <span>Random Photo of Me</span>
+        </button>
 
         <!-- MORE INFO BUTONU -->
         <button id="toggle-info-btn" class="social-link" style="width: 100%; cursor: pointer; font-family: 'Poppins', sans-serif; background: rgba(138, 43, 226, 0.08); border-color: rgba(138, 43, 226, 0.3);">
@@ -382,7 +433,7 @@
             <span>More Info & Career</span>
         </button>
 
-        <!-- MORE INFO GİZLİ İÇERİK (Animasyonlu ve Daktilo Efektli) -->
+        <!-- MORE INFO GİZLİ İÇERİK -->
         <div id="hidden-info-content">
             <div style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
                 <strong style="color: #8a2be2; font-size: 0.95rem;">More Info:</strong><br>
@@ -394,19 +445,17 @@
             </div>
         </div>
 
-        <!-- TikTok Butonu -->
+        <!-- Sosyal Medya Linkleri -->
         <a href="https://www.tiktok.com/@atesvrfr" target="_blank" class="social-link">
             <i class="fab fa-tiktok"></i>
             <span>TikTok</span>
         </a>
 
-        <!-- Steam Butonu -->
         <a href="https://steamcommunity.com/profiles/76561199128426003/" target="_blank" class="social-link">
             <i class="fab fa-steam"></i>
             <span>Steam</span>
         </a>
 
-        <!-- YouTube Butonu -->
         <a href="https://www.youtube.com/@atesvr/shorts" target="_blank" class="social-link">
             <i class="fab fa-youtube"></i>
             <span>YouTube</span>
@@ -419,7 +468,7 @@
         
     </div>
 
-    <!-- Müzik Sistemi Giriş Ekranı -->
+    <!-- Müzik Giriş Ekranı -->
     <div id="music-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(3, 0, 8, 0.98); z-index:9999; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#fff; font-family:sans-serif;">
         <h2 style="margin-bottom:20px; font-weight:300; letter-spacing:2px;">Listen to the Atmosphere?</h2>
         <button id="play-music-btn" style="padding:15px 30px; cursor:pointer; background:#8a2be2; border:none; color:white; border-radius:30px; font-weight:bold; transition: 0.3s; box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);">PLAY MUSIC</button>
@@ -429,7 +478,7 @@
 
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // --- 0. Açılır Kutu ve Hızlı Daktilo Efekti ---
+        // --- 0. Açılır Kutu ve Daktilo Efekti ---
         const text1 = "I am also a Gorilla Tag Horror (GTH) content creator. I was highly dedicated to it, earning 3 Finger Painter badges across different games. Over time, I've built a solid reputation and became a trusted figure across many communities and servers.";
         const text2 = "Back in mid-April, I reached my absolute peak in Gorilla Tag, hitting Branch Top 1. During my prime, I was practically untaggable. I truly miss those peak days...";
 
@@ -439,7 +488,7 @@
             let i = 0;
             let el = document.getElementById(elementId);
             el.innerHTML = '';
-            el.classList.add('type-cursor'); // İmleci ekle
+            el.classList.add('type-cursor'); 
             
             function type() {
                 if (i < text.length) {
@@ -448,7 +497,7 @@
                     let timeoutId = setTimeout(type, speed);
                     typeTimeouts.push(timeoutId);
                 } else {
-                    el.classList.remove('type-cursor'); // Yazma bitince imleci kaldır
+                    el.classList.remove('type-cursor'); 
                     if(callback) callback();
                 }
             }
@@ -460,16 +509,13 @@
             var icon = document.getElementById('toggle-info-icon');
             
             if (!content.classList.contains('open')) {
-                // Kutuyu aç
                 content.classList.add('open');
                 icon.classList.remove('fa-chevron-down');
                 icon.classList.add('fa-chevron-up');
                 
-                // Önceki yazıları temizle
                 document.getElementById('typewriter-1').innerHTML = '';
                 document.getElementById('typewriter-2').innerHTML = '';
                 
-                // Kutunun açılmasını biraz bekle (300ms) sonra daktiloyu süper hızlı (12ms) başlat
                 setTimeout(() => {
                     typeWriterEffect('typewriter-1', text1, 12, () => {
                         typeWriterEffect('typewriter-2', text2, 12);
@@ -477,12 +523,10 @@
                 }, 300);
                 
             } else {
-                // Kutuyu kapat
                 content.classList.remove('open');
                 icon.classList.remove('fa-chevron-up');
                 icon.classList.add('fa-chevron-down');
                 
-                // Kapanırken daktiloyu durdur ve yazıları sil
                 typeTimeouts.forEach(clearTimeout);
                 typeTimeouts = [];
                 setTimeout(() => {
@@ -490,11 +534,31 @@
                     document.getElementById('typewriter-1').classList.remove('type-cursor');
                     document.getElementById('typewriter-2').innerHTML = '';
                     document.getElementById('typewriter-2').classList.remove('type-cursor');
-                }, 400); // Kapanma animasyonu bitince sil
+                }, 400); 
             }
         });
 
-        // --- 1. Gelişmiş Mobil & PC Uyumlu Müzik Sistemi ---
+        // --- GÜNCELLENEN KISIM: .jpeg LİSTESİ ---
+        const photoArray = ['f1.jpeg', 'f2.jpeg', 'f3.jpeg', 'f4.jpeg', 'f5.jpeg', 'f6.jpeg', 'f7.jpeg', 'f8.jpeg', 'f9.jpeg', 'f10.jpeg'];
+        
+        document.getElementById('random-photo-btn').addEventListener('click', function() {
+            const avatar = document.getElementById('main-avatar');
+            
+            // Küçülme ve Kaybolma Animasyonu
+            avatar.style.opacity = '0';
+            avatar.style.transform = 'scale(0.7) rotate(-15deg)';
+            
+            // Fotoğraf Değişimi ve Geri Gelme Animasyonu
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * photoArray.length);
+                avatar.src = photoArray[randomIndex];
+                
+                avatar.style.opacity = '1';
+                avatar.style.transform = 'scale(1) rotate(0deg)';
+            }, 400);
+        });
+
+        // --- Müzik Sistemi ---
         var player;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
@@ -511,7 +575,6 @@
                             document.getElementById('music-overlay').style.display = 'none';
                         }
                         
-                        // Hem tıklama hem telefon dokunuşu garantilendi
                         btn.addEventListener('click', triggerPlayback);
                         btn.addEventListener('touchstart', triggerPlayback, {passive: false});
                     }
@@ -519,7 +582,7 @@
             });
         }
 
-        // --- 2. Saniyeli Zaman Sistemi (İstanbul Lokasyonu) ---
+        // --- İstanbul Saat Sistemi ---
         function updateTime() {
             const now = new Date();
             const timeString = now.toLocaleTimeString('tr-TR', { timeZone: 'Europe/Istanbul', hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -528,7 +591,7 @@
         setInterval(updateTime, 1000);
         updateTime();
 
-        // --- 3. Gizli Hava Durumu Sistemi (Şehir İsmi Çıkmaz) ---
+        // --- Hava Durumu Sistemi ---
         fetch('https://api.open-meteo.com/v1/forecast?latitude=41.0138&longitude=28.9497&current_weather=true')
             .then(res => res.json())
             .then(data => {
