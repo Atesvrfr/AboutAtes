@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ates | Bio</title>
-    <!-- FontAwesome (TikTok Logosu için) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
@@ -141,6 +139,26 @@
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
+        /* Yeni Eklenen Profil Resmi Kuralları */
+        .profile-avatar {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            margin: 0 auto 15px auto;
+            display: block;
+        }
+
+        /* Gizli Hava Durumu ve Saniyeli Saat Kuralları */
+        .stealth-widget {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 15px;
+            font-family: monospace;
+            letter-spacing: 1px;
+        }
+
         /* İsim: İçinde Yıldızların Aktığı Mor Galaksi Efekti */
         .zero-gravity-name {
             display: flex;
@@ -220,7 +238,7 @@
             font-weight: 500;
         }
 
-        /* TikTok Butonu */
+        /* Butonların Ortak Stili ve Animasyonları */
         .social-link {
             display: flex;
             align-items: center;
@@ -235,7 +253,7 @@
             font-size: 1.1rem;
             font-weight: 500;
             transition: all 0.3s ease;
-            margin-bottom: 25px;
+            margin-bottom: 15px; /* Alt alta düzgün durmaları için 15px yapıldı */
         }
 
         .social-link:hover {
@@ -258,6 +276,7 @@
             font-style: italic;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding-top: 15px;
+            margin-top: 10px;
             margin-bottom: 15px;
         }
 
@@ -277,21 +296,19 @@
 </head>
 <body>
 
-    <!-- Uzaktaki Kara Delik -->
     <div class="black-hole-container">
         <div class="accretion-disk"></div>
         <div class="black-hole"></div>
     </div>
 
-    <!-- Arka Plan Katmanları -->
     <div class="deep-space-bg"></div>
     <div class="stars-layer-1"></div>
     <div class="stars-layer-2"></div>
 
-    <!-- Profil Kartı -->
     <div class="profile-card">
         
-        <!-- Zero Gravity & İçinde Yıldızlar Kayan İsim -->
+        <img src="image_93dc62.jpg" alt="Logo" class="profile-avatar">
+        
         <div class="zero-gravity-name">
             <span>A</span>
             <span>t</span>
@@ -299,54 +316,92 @@
             <span>s</span>
         </div>
 
-        <!-- ESKİ Biyografi Metni (Aynen duruyor) -->
+        <div class="stealth-widget">
+            <span id="temp-display">--°C</span> | <span id="time-display">--:--:--</span>
+        </div>
+
         <div class="main-bio">
             Hello, I am <strong>Ates</strong>. Maybe y'all know me as Atesvr. I am a content creator, but honestly, I don't actually want to make content anymore. I just wanna have fun. Yet, I can't even be truly happy in VR lately. I'm just tired...
         </div>
 
-        <!-- YENİ Biyografi Metni -->
         <div class="sub-bio">
             I'm <strong>14</strong>, based in <strong>Turkey</strong>, and I have an absolute obsession with the cosmos. I fucking love astronomy—honestly, if the universe were a girl, I'd marry her in a heartbeat.
         </div>
 
-        <!-- TikTok Butonu -->
         <a href="https://www.tiktok.com/@atesvrfr" target="_blank" class="social-link">
             <i class="fab fa-tiktok"></i>
             <span>TikTok</span>
         </a>
 
-        <!-- Anlamlı Söz -->
+        <a href="https://steamcommunity.com/profiles/76561199128426003/" target="_blank" class="social-link">
+            <i class="fab fa-steam"></i>
+            <span>Steam</span>
+        </a>
+
+        <a href="https://www.youtube.com/@atesvr/shorts" target="_blank" class="social-link">
+            <i class="fab fa-youtube"></i>
+            <span>YouTube</span>
+        </a>
+
         <div class="quote-text">
             "Life is beautiful and unique until it teaches you a few things."
         </div>
         
-
     </div>
-<div id="music-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#fff; font-family:sans-serif;">
-    <h2 style="margin-bottom:20px;">Listen to the Atmosphere?</h2>
-    <button id="play-music-btn" style="padding:15px 30px; cursor:pointer; background:#8a2be2; border:none; color:white; border-radius:30px; font-weight:bold;">PLAY MUSIC</button>
-</div>
 
-<div id="player" style="display:none;"></div>
+    <div id="music-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(3, 0, 8, 0.98); z-index:9999; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#fff; font-family:sans-serif;">
+        <h2 style="margin-bottom:20px; font-weight:300; letter-spacing:2px;">Listen to the Atmosphere?</h2>
+        <button id="play-music-btn" style="padding:15px 30px; cursor:pointer; background:#8a2be2; border:none; color:white; border-radius:30px; font-weight:bold; transition: 0.3s; box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);">PLAY MUSIC</button>
+    </div>
 
-<script src="https://www.youtube.com/iframe_api"></script>
-<script>
-    var player;
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-            videoId: 'kahaQNzT-ec',
-            events: {
-                'onReady': function() {
-                    document.getElementById('play-music-btn').addEventListener('click', function() {
-                        player.playVideo();
-                        player.setVolume(50);
-                        document.getElementById('music-overlay').style.display = 'none';
-                    });
+    <div id="player" style="display:none;"></div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        // --- 1. Gelişmiş Mobil & PC Uyumlu Müzik Sistemi ---
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                videoId: 'kahaQNzT-ec',
+                playerVars: { 'autoplay': 0, 'controls': 0, 'playsinline': 1, 'loop': 1, 'playlist': 'kahaQNzT-ec' },
+                events: {
+                    'onReady': function(event) {
+                        const btn = document.getElementById('play-music-btn');
+                        
+                        function triggerPlayback(e) {
+                            e.preventDefault();
+                            event.target.playVideo();
+                            event.target.setVolume(50);
+                            document.getElementById('music-overlay').style.display = 'none';
+                        }
+                        
+                        // Hem tıklama hem telefon dokunuşu garantilendi
+                        btn.addEventListener('click', triggerPlayback);
+                        btn.addEventListener('touchstart', triggerPlayback, {passive: false});
+                    }
                 }
-            }
-        });
-    }
-</script>
+            });
+        }
+
+        // --- 2. Saniyeli Zaman Sistemi (İstanbul Lokasyonu) ---
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('tr-TR', { timeZone: 'Europe/Istanbul', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById('time-display').innerText = timeString;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // --- 3. Gizli Hava Durumu Sistemi (Şehir İsmi Çıkmaz) ---
+        fetch('https://api.open-meteo.com/v1/forecast?latitude=41.0138&longitude=28.9497&current_weather=true')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('temp-display').innerText = Math.round(data.current_weather.temperature) + '°C';
+            })
+            .catch(() => {
+                document.getElementById('temp-display').innerText = '--°C';
+            });
+    </script>
     
 </body>
 </html>
