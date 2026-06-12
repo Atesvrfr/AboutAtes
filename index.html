@@ -294,10 +294,7 @@
             opacity: 1;
         }
         
-        /* ----------------------------------------------------
-           YENİ EKLENEN: AÇILIR KUTU VE DAKTİLO EFEKTİ CSS'İ
-           (Eski tasarımını zerre bozmayacak şekilde entegre edildi)
-        ----------------------------------------------------- */
+        /* AÇILIR KUTU VE DAKTİLO EFEKTİ CSS'İ */
         #hidden-info-content {
             max-height: 0;
             opacity: 0;
@@ -313,7 +310,7 @@
             line-height: 1.6;
             color: rgba(255, 255, 255, 0.7);
             font-weight: 300;
-            transition: all 0.4s ease-in-out; /* Kutunun yumuşak açılması */
+            transition: all 0.4s ease-in-out; 
         }
 
         #hidden-info-content.open {
@@ -366,7 +363,7 @@
 
         <!-- Gizli Hava Durumu ve Saniyeli Zaman Göstergesi -->
         <div class="stealth-widget">
-            <span id="temp-display">--°C</span> | <span id="time-display">--:--:--</span>
+            My local weather: <span id="temp-display">--°C</span> | My local time: <span id="time-display">--:--:--</span>
         </div>
 
         <!-- ESKİ Biyografi Metni -->
@@ -379,13 +376,13 @@
             I'm <strong>14</strong>, based in <strong>Turkey</strong>, and I have an absolute obsession with the cosmos. I fucking love astronomy—honestly, if the universe were a girl, I'd marry her in a heartbeat.
         </div>
 
-        <!-- YENİ: MORE INFO BUTONU -->
+        <!-- MORE INFO BUTONU -->
         <button id="toggle-info-btn" class="social-link" style="width: 100%; cursor: pointer; font-family: 'Poppins', sans-serif; background: rgba(138, 43, 226, 0.08); border-color: rgba(138, 43, 226, 0.3);">
             <i class="fas fa-chevron-down" id="toggle-info-icon" style="text-shadow: none; font-size: 1.2rem;"></i>
             <span>More Info & Career</span>
         </button>
 
-        <!-- YENİ: MORE INFO GİZLİ İÇERİK (Animasyonlu ve Daktilo Efektli) -->
+        <!-- MORE INFO GİZLİ İÇERİK (Animasyonlu ve Daktilo Efektli) -->
         <div id="hidden-info-content">
             <div style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
                 <strong style="color: #8a2be2; font-size: 0.95rem;">More Info:</strong><br>
