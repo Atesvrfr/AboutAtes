@@ -357,109 +357,6 @@
             50% { opacity: 0; }
         }
 
-        /* YENİ EKLENEN CSS KISIMLARI: Beğeni, Ziyaretçi ve Şarkı Bilgisi */
-        
-        /* Şu an çalan şarkı paneli (Üst Orta) */
-        .now-playing {
-            position: fixed;
-            top: 25px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-20px);
-            z-index: 1000;
-            background: rgba(8, 10, 20, 0.65);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 8px 20px;
-            border-radius: 30px;
-            border: 1px solid rgba(138, 43, 226, 0.3);
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.8);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            opacity: 0;
-            transition: all 0.5s ease;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            pointer-events: none;
-        }
-        .now-playing.visible {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-        .now-playing i {
-            color: #8a2be2;
-            animation: diskSpin 3s linear infinite;
-        }
-        @keyframes diskSpin { 100% { transform: rotate(360deg); } }
-
-        /* Ziyaretçi Sayacı (Sol Alt) */
-        .visitor-counter {
-            position: fixed;
-            bottom: 25px;
-            left: 25px;
-            z-index: 1000;
-            background: rgba(8, 10, 20, 0.65);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 10px 18px;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 242, 254, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-        }
-        .visitor-counter i {
-            color: #00f2fe;
-        }
-
-        /* Beğeni Butonu (Sağ Alt) */
-        .like-btn-container {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(8, 10, 20, 0.65);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 10px 18px;
-            border-radius: 20px;
-            border: 1px solid rgba(138, 43, 226, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-        }
-        .like-btn-container:hover {
-            background: rgba(138, 43, 226, 0.15);
-            transform: translateY(-3px);
-        }
-        .like-btn-container i {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 1.3rem;
-            transition: all 0.3s ease;
-        }
-        .like-count {
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: #fff;
-        }
-        /* Tıklanınca ve beğenilince oluşacak efekt */
-        .like-btn-container.liked i {
-            color: #ff0050;
-            animation: heartBeat 0.4s ease-in-out;
-            text-shadow: 0 0 10px rgba(255, 0, 80, 0.5);
-        }
-        @keyframes heartBeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.4); }
-            100% { transform: scale(1); }
-        }
-
         @media (max-width: 650px) {
             .widget-wing {
                 position: static;
@@ -472,32 +369,10 @@
                 padding: 10px 15px;
                 z-index: 1;
             }
-            .now-playing { top: 10px; font-size: 0.75rem; }
-            .visitor-counter, .like-btn-container { bottom: 15px; padding: 8px 12px; }
-            .visitor-counter { left: 15px; }
-            .like-btn-container { right: 15px; }
         }
     </style>
 </head>
 <body>
-
-    <!-- YENİ: Şu An Çalan Şarkı Bilgisi -->
-    <div id="now-playing" class="now-playing">
-        <i class="fas fa-compact-disc"></i>
-        <span>Now Playing: <strong id="song-title">Loading...</strong></span>
-    </div>
-
-    <!-- YENİ: Ziyaretçi Sayacı (Sol Alt) -->
-    <div class="visitor-counter">
-        <i class="fas fa-eye"></i>
-        <span id="visitor-count-display">0</span> Visitors
-    </div>
-
-    <!-- YENİ: Beğeni Butonu (Sağ Alt) -->
-    <div id="like-btn" class="like-btn-container">
-        <i class="far fa-heart"></i>
-        <span id="like-count-display" class="like-count">0</span>
-    </div>
 
     <!-- Uzaktaki Kara Delik -->
     <div class="black-hole-container">
@@ -656,114 +531,29 @@
             }
         });
 
-        // --- GÜNCELLENEN KISIM: Gelişmiş Rastgele Müzik Çalar ---
-        const songs = [
-            { id: 'kahaQNzT-ec', title: 'Atmospheric Space' }, // Eski Şarkı
-            { id: '8GW6sLrK40k', title: 'Deep Cosmic Echoes' } // Yeni Şarkı
-        ];
-        
-        let currentSongIndex = Math.floor(Math.random() * songs.length);
+        // --- Müzik Sistemi ---
         var player;
-
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
-                videoId: songs[currentSongIndex].id,
-                playerVars: { 'autoplay': 0, 'controls': 0, 'playsinline': 1 },
+                videoId: 'kahaQNzT-ec',
+                playerVars: { 'autoplay': 0, 'controls': 0, 'playsinline': 1, 'loop': 1, 'playlist': 'kahaQNzT-ec' },
                 events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
+                    'onReady': function(event) {
+                        const btn = document.getElementById('play-music-btn');
+                        
+                        function triggerPlayback(e) {
+                            e.preventDefault();
+                            event.target.playVideo();
+                            event.target.setVolume(50);
+                            document.getElementById('music-overlay').style.display = 'none';
+                        }
+                        
+                        btn.addEventListener('click', triggerPlayback);
+                        btn.addEventListener('touchstart', triggerPlayback, {passive: false});
+                    }
                 }
             });
         }
-
-        function onPlayerReady(event) {
-            const btn = document.getElementById('play-music-btn');
-            function triggerPlayback(e) {
-                e.preventDefault();
-                event.target.playVideo();
-                event.target.setVolume(50);
-                document.getElementById('music-overlay').style.display = 'none';
-                showNowPlaying();
-            }
-            btn.addEventListener('click', triggerPlayback);
-            btn.addEventListener('touchstart', triggerPlayback, {passive: false});
-        }
-
-        // Şarkı bitince diğerine geçmesi için:
-        function onPlayerStateChange(event) {
-            if (event.data === YT.PlayerState.ENDED) {
-                let nextIndex = Math.floor(Math.random() * songs.length);
-                // Aynı şarkı arka arkaya gelmesin diye ufak bir kontrol
-                if (songs.length > 1 && nextIndex === currentSongIndex) {
-                    nextIndex = (nextIndex + 1) % songs.length;
-                }
-                currentSongIndex = nextIndex;
-                player.loadVideoById(songs[currentSongIndex].id);
-                showNowPlaying();
-            }
-        }
-
-        function showNowPlaying() {
-            const npEl = document.getElementById('now-playing');
-            document.getElementById('song-title').innerText = songs[currentSongIndex].title;
-            npEl.classList.add('visible');
-        }
-
-        // --- YENİ KISIM: Ziyaretçi Sayacı (F5 Korumalı) ---
-        let baseVisitors = 1842; // Temel bir rakam, havalı durması için
-        
-        // Kullanıcı daha önce siteye girdiyse hafızadan oku, girmediyse +1 ekle ve kaydet
-        if (!localStorage.getItem('hasVisited_Ates')) {
-            baseVisitors++;
-            localStorage.setItem('hasVisited_Ates', 'true');
-            localStorage.setItem('localFakeTotal', baseVisitors.toString());
-        } else {
-            if (localStorage.getItem('localFakeTotal')) {
-                baseVisitors = parseInt(localStorage.getItem('localFakeTotal'));
-            }
-        }
-        document.getElementById('visitor-count-display').innerText = baseVisitors;
-
-        // --- YENİ KISIM: Beğeni (Like) Sistemi ---
-        const likeBtn = document.getElementById('like-btn');
-        let baseLikes = 428; // Temel beğeni rakamı
-        let isLiked = localStorage.getItem('isLiked_Ates') === 'true';
-
-        if (localStorage.getItem('localFakeLikes')) {
-            baseLikes = parseInt(localStorage.getItem('localFakeLikes'));
-        }
-
-        function updateLikeUI() {
-            if (isLiked) {
-                likeBtn.classList.add('liked');
-                likeBtn.querySelector('i').classList.remove('far');
-                likeBtn.querySelector('i').classList.add('fas'); // İçi dolu kalp
-            } else {
-                likeBtn.classList.remove('liked');
-                likeBtn.querySelector('i').classList.remove('fas');
-                likeBtn.querySelector('i').classList.add('far'); // İçi boş kalp
-            }
-            document.getElementById('like-count-display').innerText = baseLikes;
-        }
-
-        updateLikeUI(); // Sayfa açılınca son durumu göster
-
-        likeBtn.addEventListener('click', () => {
-            if (!isLiked) {
-                isLiked = true;
-                baseLikes++;
-                localStorage.setItem('isLiked_Ates', 'true');
-                localStorage.setItem('localFakeLikes', baseLikes.toString());
-            } else {
-                // Tıklayıp beğeniyi geri çekmek isterse
-                isLiked = false;
-                baseLikes--;
-                localStorage.setItem('isLiked_Ates', 'false');
-                localStorage.setItem('localFakeLikes', baseLikes.toString());
-            }
-            updateLikeUI();
-        });
-
 
         // --- İstanbul Saat Sistemi ---
         function updateTime() {
